@@ -1,0 +1,20 @@
+viết 1 hàm duy nhất print(...) để thực hiện các yêu cầu sau:
+cho n = 100,
+- in ra màn hình số chẳn
+- in ra màn hình số lẻ
+- in ra màn hình số chính phương
+- in ra màn hình số chia 9 dư 8
+- in ra màn hình số chia 7 dư 3
+
+
+print();
+
+
+function inSoChan(n, cb){
+  for(i=1->n){
+    dieukien tra ve cua cb
+    if(dieukien==true)
+      console.log(i)
+    }
+  }
+}

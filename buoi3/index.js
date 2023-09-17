@@ -38,3 +38,8 @@ getUsers()
     console.log(error.message)
   }
   )
+
+  (() => {
+    console.log();
+
+  })()
