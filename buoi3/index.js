@@ -19,7 +19,7 @@ const getUsers = () => {
     request.get(url, {}, (error, resp, body) => {
       if (!error) {
         if (resp.statusCode == 200)
-          return resolve(body); // lay data tu api bang resolve
+          return resolve(JSON.parse(body)); // lay data tu api bang resolve
         else
           return reject('Couldn\'t find users');
       }
@@ -27,19 +27,41 @@ const getUsers = () => {
     })
   })
 }
-getUsers()
-  .then((data) => {
-    console.log('Success');
-    const users = JSON.parse(data)
-    console.log(users[0]);
+const getPosts = (url) => {
+  return new Promise((resolve, reject) => {
+    request.get(url, {}, (error, resp, body) => {
+      if (!error && resp.statusCode == 200) {
+        return resolve(JSON.parse(body));
+      }
+      return reject('Error!');
+    })
   })
-  .catch(error => {
-    console.log('Error here');
-    console.log(error.message)
+}
+
+(async () => {
+  try {
+    const users = await getUsers();
+    const user = users[0];
+    const posts = await getPosts(urlPost + user.id);
+    console.log(posts);
+  } catch (error) {
+    console.log(error.message);
   }
-  )
+})();
 
-  (() => {
-    console.log();
+// getUsers()
+//   .then((data) => {
+//     console.log('Success');
+//     const users = JSON.parse(data)
+//     console.log(users[0]);
+//   })
+//   .catch(error => {
+//     console.log('Error here');
+//     console.log(error.message)
+//   }
+//   )
 
-  })()
+//   (() => {
+//     console.log();
+
+//   })()
