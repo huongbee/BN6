@@ -33,7 +33,7 @@ https://expressjs.com/en/guide/routing.html
 Bai 1:
 Dựng 1 server node
 Tạo 1 router có path
-http://localhost:3000/cong/1/2
+http://localhost:3000/cong/1/2 // link || url || uri
 http://localhost:3000/tru/1/2
 http://localhost:3000/nhan/1/2
 http://localhost:3000/chia/1/2
