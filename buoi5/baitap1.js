@@ -11,7 +11,7 @@ app.get('/:phep_tinh/:so_a/:so_b', (req, res) => {
   if (!Number.isInteger(a) || isNaN(b)) {
     return res.json({
       error: true,
-      message: 'URL number!'
+      message: 'Invalid number!'
     })
   }
   switch (phep_tinh) {

@@ -13,7 +13,19 @@ const Request = require('../buoi3/Helper');
 const url = 'http://localhost:3000';
 const a = 3, b = 5, c = 2, d = 4, e = 6, f = 2;
 (async () => {
-  const d = await Request.requestGet(`${url}/cong/${a}/${b}`);
-  const x = d.ketqua;
-  console.log(x);
+  const tong1 = await Request.requestGet(`${url}/cong/${a}/${b}`);
+  const x = tong1.ketqua;
+
+  const tong2 = await Request.requestGet(`${url}/cong/${c}/${d}`);
+  const y = tong2.ketqua;
+
+  const tong3 = await Request.requestGet(`${url}/cong/${x}/${y}`);
+  const t = tong3.ketqua;
+
+  const tich = await Request.requestGet(`${url}/nhan/${t}/${e}`);
+  const z = tich.ketqua;
+
+  const thuong = await Request.requestGet(`${url}/chia/${z}/${f}`);
+  const r = thuong.ketqua;
+  console.log(x, y, t, z, r);
 })();
