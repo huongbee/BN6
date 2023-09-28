@@ -8,7 +8,11 @@ const myLogger = function (req, res, next) {
   if (remoteAddress != '::1') {
     next()
   } else
-    res.json({ error: true, message: 'Log in failed' })
+    res.json({
+      resCode: 404,
+      error: true,
+      message: 'Not found user'
+    })
 }
 
 app.use(myLogger)
