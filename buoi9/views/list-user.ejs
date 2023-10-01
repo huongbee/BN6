@@ -30,7 +30,7 @@
                 </td>
                 <td>
                   <button class="btn btn-warning">Edit</button>
-                  <button type="submit" class="btn btn-danger" onclick="doDelete()">
+                  <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn xóa?')">
                     <a href="/delete/<%=user.id%>">Delete</a>
                   </button>
                 </td>
@@ -43,10 +43,5 @@
   </div>
   <%- include('footer', {name:'Kmin'})%>
     </body>
-    <script>
-      function doDelete() {
-        return confirm('Bạn có chắc chắn xóa?')
-      }
-    </script>
 
     </html>
