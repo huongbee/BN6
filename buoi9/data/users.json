@@ -1,23 +1,5 @@
 [
   {
-    "id": 1,
-    "username": "admin",
-    "password": "111111",
-    "fullname": "Administrator"
-  },
-  {
-    "id": 2,
-    "username": "user",
-    "password": "111111",
-    "fullname": "User 01"
-  },
-  {
-    "id": 3,
-    "username": "guest",
-    "password": "111111",
-    "fullname": "Guest 01"
-  },
-  {
     "id": 4,
     "username": "sale",
     "password": "111111",
