@@ -21,4 +21,8 @@ app.get('/delete/:id', (req, res) => {
   res.redirect('/users');
 });
 
+app.get('/update/:id', (req, res) => {
+  const user = listUser.find(user => user.id == +req.params.id);
+  res.render('update', { user });
+});
 app.listen(3000, () => { console.log('server running on port 3000'); });

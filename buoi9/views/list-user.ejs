@@ -29,7 +29,9 @@
                   <%=user.username%>
                 </td>
                 <td>
-                  <button class="btn btn-warning">Edit</button>
+                  <button class="btn btn-warning">
+                    <a href="/update/<%=user.id%>">Edit</a>
+                  </button>
                   <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn xóa?')">
                     <a href="/delete/<%=user.id%>">Delete</a>
                   </button>
@@ -41,7 +43,6 @@
       </div>
     </div>
   </div>
-  <%- include('footer', {name:'Kmin'})%>
-    </body>
+  </body>
 
-    </html>
+  </html>
