@@ -5,23 +5,23 @@
         <h2 class="title-blue">Update User <b>
             <%=user.fullname%>
           </b></h2>
-        <form>
+        <form method="post" action="/update">
           <div class="mb-3">
             <label for="id-user" class="form-label">ID</label>
-            <input type="number" disabled class="form-control" id="id-user" value="<%=user.id%>">
+            <input type="number" readonly class="form-control" id="id-user" value="<%=user.id%>" name="idUser">
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Username</label>
             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-              value="<%=user.username%>">
+              value="<%=user.username%>" name="username">
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" value="<%=user.password%>">
+            <input type="password" class="form-control" id="password" value="<%=user.password%>" name="password">
           </div>
           <div class="mb-3">
             <label for="fullname" class="form-label">Fullname</label>
-            <input type="text" class="form-control" id="fullname" value="<%=user.fullname%>">
+            <input type="text" class="form-control" id="fullname" value="<%=user.fullname%>" name="fullname">
           </div>
           <button type="submit" class="btn btn-warning">Update</button>
         </form>
