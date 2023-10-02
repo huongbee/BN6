@@ -2,23 +2,26 @@
   <div class="container py-5">
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <h2 class="title-blue">Update User <b>1</b></h2>
+        <h2 class="title-blue">Update User <b>
+            <%=user.fullname%>
+          </b></h2>
         <form>
           <div class="mb-3">
             <label for="id-user" class="form-label">ID</label>
-            <input type="number" class="form-control" id="id-user">
+            <input type="number" disabled class="form-control" id="id-user" value="<%=user.id%>">
           </div>
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="exampleInputEmail1" class="form-label">Username</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+              value="<%=user.username%>">
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password">
+            <input type="password" class="form-control" id="password" value="<%=user.password%>">
           </div>
           <div class="mb-3">
             <label for="fullname" class="form-label">Fullname</label>
-            <input type="text" class="form-control" id="fullname">
+            <input type="text" class="form-control" id="fullname" value="<%=user.fullname%>">
           </div>
           <button type="submit" class="btn btn-warning">Update</button>
         </form>
