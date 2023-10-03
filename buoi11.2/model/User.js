@@ -25,7 +25,7 @@ const updateUser = async (id, fullname, username, password) => {
     [fullname, username, md5(password), id]
   );
   if (results[0].changedRows == 0) return null;
-  return results[0];
+  return true;
 }
 
 module.exports = { findAllUsers, updateUser, findUserById }

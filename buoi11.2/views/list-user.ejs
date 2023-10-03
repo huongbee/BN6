@@ -29,12 +29,8 @@
                   <%=user.username%>
                 </td>
                 <td>
-                  <button class="btn btn-warning">
-                    <a href="/update/<%=user.id%>">Edit</a>
-                  </button>
-                  <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn xóa?')">
-                    <a href="/delete/<%=user.id%>">Delete</a>
-                  </button>
+                  <a class="btn btn-warning" href="/update/<%=user.id%>">Edit</a>
+                  <a class="btn btn-danger" href="/delete/<%=user.id%>">Delete</a>
                 </td>
               </tr>
               <% }) %>

@@ -24,10 +24,10 @@ router.get('/update/:id', async (req, res) => {
   if (!user) return res.redirect('/users');
   res.render('update', { user });
 });
-router.post('/update', async (req, res) => {
+router.post('/update', async (req, res) => { // action cua form update
   const { idUser, username, fullname, password } = req.body;
   const result = await updateUser(idUser, fullname, username, password);
-  if (!result) return res.redirect('/update/' + idUser);
-  res.redirect('/users');
+  if (!result) return res.redirect('/update/' + idUser); // update false
+  res.redirect('/users'); // home
 });
 module.exports = router;
