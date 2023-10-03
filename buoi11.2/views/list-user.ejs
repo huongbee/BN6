@@ -1,0 +1,48 @@
+<%- include('header')%>
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div cls="col-md-8">
+        <h2 class="title-blue">List User</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Fullname</th>
+              <th scope="col">Password</th>
+              <th scope="col">Username</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            <% users.forEach((user)=>{ %>
+              <tr>
+                <th scope="row">
+                  <%=user.id%>
+                </th>
+                <td>
+                  <a href="/user/<%=user.id%>">
+                    <%=user.fullname%>
+                  </a>
+                </td>
+                <td>*****</td>
+                <td>
+                  <%=user.username%>
+                </td>
+                <td>
+                  <button class="btn btn-warning">
+                    <a href="/update/<%=user.id%>">Edit</a>
+                  </button>
+                  <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn xóa?')">
+                    <a href="/delete/<%=user.id%>">Delete</a>
+                  </button>
+                </td>
+              </tr>
+              <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </body>
+
+  </html>
