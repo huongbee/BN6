@@ -3,7 +3,6 @@ const { findAllUsers, updateUser, findUserById, removeUser } = require('../model
 module.exports = {
   homePage: async (req, res) => {
     const users = await findAllUsers();
-    console.log('info_message: ' + req.flash('info_message'));
     res.render('list-user', {
       users,
       error_message: req.flash('error_message'),
@@ -11,9 +10,7 @@ module.exports = {
     });
   },
   deleteUser: async (req, res) => {
-    // const result = await removeUser(+req.params.id);
-    const result = null;
-    req.flash('info_message', 'Delete successfully')
+    const result = await removeUser(+req.params.id);
     if (!result) { // error
       req.flash('error_message', 'Delete error, plz try again!');
       res.redirect('/users');

@@ -6,7 +6,7 @@ const session = require('express-session');
 const sessionConfig = require('./config/session');
 const app = express();
 
-app.use(cookieParser({ maxAge: 60000 }))
+app.use(cookieParser(''))
 app.use(session(sessionConfig))
 app.use(flash());
 
