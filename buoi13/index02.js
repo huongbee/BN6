@@ -74,6 +74,33 @@ const UserModel = mongoose.model('User', UserSchema); // User: collection name
 // })
 //   .then(user => console.log(user))
 //   .catch((err) => console.log(err.message));
-UserModel.findById({ _id: '6523f7fa5214a7e13b741b73' })
+
+// UserModel.findById({ _id: '6523f7fa5214a7e13b741b73' })
+//   .then(user => console.log(user))
+//   .catch((err) => console.log(err.message));
+
+// select * from users where age >= 20;
+// gte: greater than or equal: >=
+// gt: greater than: >
+// lte: less than or equal: <=
+// lt: less than: <
+
+// UserModel.find({
+//   age: { $gte: 20 },
+// })
+//   .then(user => console.log(user))
+//   .catch((err) => console.log(err.message));
+
+
+
+// select * from users where fullname like 'Nguyễn%';
+UserModel.find({
+  fullname: { $regex: /Nguyễn*/ },
+})
   .then(user => console.log(user))
   .catch((err) => console.log(err.message));
+
+
+
+// select fullname, username from users;
+//$match
