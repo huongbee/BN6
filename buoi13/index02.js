@@ -39,6 +39,46 @@ const UserModel = mongoose.model('User', UserSchema); // User: collection name
 //   .then(usr => console.log(usr))
 //   .catch((err) => console.log(err.message));
 
+
+// insert many
+// UserModel.insertMany([
+//   {
+//     fullname: 'Trần Văn B',
+//     age: 30,
+//     username: 'tranvanb',
+//     password: '',
+//     birthdate: new Date(),
+//   },
+//   {
+//     age: 20,
+//     username: 'tranvanc',
+//     password: '',
+//     birthdate: new Date(),
+//   },
+//   {
+//     fullname: 'Nguyễn Thị Thanh',
+//     age: 25,
+//     username: 'nguyenthithanh',
+//     password: '',
+//     birthdate: new Date(),
+//   },
+//   {
+//     fullname: 'Lê Thanh Thanh',
+//     age: 27,
+//     username: 'lethanhthanh',
+//     password: '',
+//   },
+//   {
+//     fullname: 'Lê Văn A',
+//     age: 10,
+//     username: 'levana',
+//     password: '',
+//     birthdate: new Date(),
+//   }
+// ])
+
+
+
 // 1
 // {
 //     "_id": ObjectId("6523f457c8b5b26a138e369f"),
@@ -94,13 +134,78 @@ const UserModel = mongoose.model('User', UserSchema); // User: collection name
 
 
 // select * from users where fullname like 'Nguyễn%';
-UserModel.find({
-  fullname: { $regex: /Nguyễn*/ },
-})
-  .then(user => console.log(user))
-  .catch((err) => console.log(err.message));
+// UserModel.find({
+//   fullname: { $regex: /^Nguyễn/ },
+// })
+//   .then(user => console.log(user))
+//   .catch((err) => console.log(err.message));
 
+// select * from users where fullname like '%Nguyễn';
+// UserModel.find({
+//   fullname: { $regex: /Nguyễn$/ },
+// })
+//   .then(user => console.log(user))
+//   .catch((err) => console.log(err.message));
+
+// select fullname, age from users where fullname like '%Nguyễn%';
+// UserModel.find({
+//   fullname: { $regex: /Nguyễn/ },
+// }).select('fullname age -_id')
+//   // .sort({ fullname: 'desc' })
+//   .sort('-fullname')
+//   .then(user => console.log(user))
+//   .catch((err) => console.log(err.message));
 
 
 // select fullname, username from users;
 //$match
+
+// select 10+15 as example
+// from users
+// UserModel.aggregate([
+//   {
+//     $match: {}
+//   },
+
+//   {
+//     $project: {
+//       _id: 0, // hide _id
+//       example: { $sum: 10 + 15 }
+//     }
+//   }
+// ])
+//   .then(result => console.log(result))
+
+// select count(*) as total, age
+// from users
+// where age <= 10
+// group by age
+// having total >= 2
+// order by total desc
+UserModel.aggregate([
+  {
+    $match: {}
+    // $match: { age: { $lte: 10 } }
+  },
+  {
+    $group: {
+      _id: '$age',
+      // total: { $sum: 1 }
+      total: { $count: {} }
+    }
+  },
+  {
+    $match: { total: { $gte: 2 } }
+  },
+  {
+    $project: {
+      age: '$_id', // rename _id
+      _id: 0, // hide _id
+      total: 1
+    }
+  },
+  {
+    $sort: { total: -1 }
+  }
+])
+  .then(result => console.log(result))
