@@ -1,0 +1,21 @@
+Tạo collection User với các thông tin sau: email, password, name, posts, friends, receiveRequests, sendRequests,
+Tạo collection Post với các thông tin sau: author, content, likes, comments
+Tạo collection Comment với các thông tin sau: author, post, content, likes, replies
+Thực hiện các yêu cầu bên dưới:
+
+
+1 Thêm ít nhất 3 account vào collection user
+2 Thêm ít nhất 3 bài post cho các user trên
+3 Thêm ít nhất 3 comment cho các bài post trên
+4 Dùng tài khoản manager@gmail.com like bài post có id xxxxx
+5 Dùng tài khoản manager@gmail.com dislike bài post có id xxxxx
+6 Dùng tài khoản user manager@gmail.com gửi yêu cầu kết bạn đến tài khoản guest@gmail.com
+7 Account guest@gmail.com accept yêu cầu kết bạn của acc manager@gmail.com
+8 Account guest@gmail.com huỷ kết bạn của acc manager@gmail.com
+9 Liệt kê các bài đăng của user có email 'admin@gmail.com'
+10 Cho biết user có email 'manager@gmail.com' có tất cả bao nhiên bạn bè
+11 Liệt kê các yêu cầu kết bạn đã nhận của user manager@gmail.com
+12 Cho biết bài đăng với id .... có bao nhiêu lượt like, cho biết tên người tạo, liệt kê các comment của bài đăng đó, cho biết tên của user đã comment
+13 Cho biết comment đầu tiên trên bài post có id xxxxxxx của user admin@gmail.com có bao nhiêu lượt like
+14 Cập nhật lại nội dung bài đăng có id xxxxxxx
+15 Xoá bài đăng có ít hơn 5 lượt like
