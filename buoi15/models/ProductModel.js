@@ -29,6 +29,10 @@ const ProductSchema = new Schema({
   //   default: 'ĐTDĐ'
   // }],
   tags: [String],
+  updated: [{
+    date: Date,
+    promotionPercent: Number
+  }],
   createdAt: Date
 });
 const ProductModel = mongoose.model('Product', ProductSchema);
