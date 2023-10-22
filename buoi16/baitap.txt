@@ -13,7 +13,7 @@ Thực hiện các yêu cầu bên dưới:
 7 Account guest@gmail.com accept yêu cầu kết bạn của acc manager@gmail.com
 8 Account guest@gmail.com huỷ kết bạn của acc manager@gmail.com
 9 Liệt kê các bài đăng của user có email 'admin@gmail.com'
-10 Cho biết user có email 'manager@gmail.com' có tất cả bao nhiên bạn bè
+10 Cho biết user có email 'manager@gmail.com' có tất cả bao nhiêu bạn bè
 11 Liệt kê các yêu cầu kết bạn đã nhận của user manager@gmail.com
 12 Cho biết bài đăng với id .... có bao nhiêu lượt like, cho biết tên người tạo, liệt kê các comment của bài đăng đó, cho biết tên của user đã comment
 13 Cho biết comment đầu tiên trên bài post có id xxxxxxx của user admin@gmail.com có bao nhiêu lượt like

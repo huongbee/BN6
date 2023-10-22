@@ -9,20 +9,78 @@ const CommentModel = require('./models/Comment');
 const PostModel = require('./models/Post');
 
 (async () => {
-  //  5 Dùng tài khoản manager@gmail.com dislike bài post có id 6531304a8208ea3147485b0d
-  const user = await UserModel.findOne({ email: 'manager@gmail.com' }).lean();
-  const data = await PostModel.updateOne(
-    {
-      _id: '6531304a8208ea3147485b0d', // where
-    },
-    {
-      $pull: {
-        likes: user._id // where
-      }
-    },
-    { new: true }
-  );
+  //9
+  const data = await UserModel.findOne({ email: 'Admin@gmail.com' })
+    .lean()
+    .select('name -_id')
+    .populate({
+      path: 'posts',
+      select: 'content -_id'
+    })
+
   console.log(data);
+
+  // 8
+  // tu lam
+  // 7
+  // const sender = await UserModel.findOne({ email: 'manager@gmail.com' }).lean();
+  // const receiver = await UserModel.findOne({ email: 'guest@gmail.com' }).lean();
+  // // update nguoi nhan
+  // await UserModel.updateOne(
+  //   { _id: receiver._id },
+  //   {
+  //     $addToSet: { friends: sender._id },
+  //     $pull: { receiveRequests: sender._id }
+  //   }
+  // );
+  // //update nguoi gui
+  // await UserModel.updateOne(
+  //   { _id: sender._id },
+  //   {
+  //     $addToSet: { friends: receiver._id },
+  //     $pull: { sendRequests: receiver._id }
+  //   }
+  // );
+
+
+
+  // 6
+  // const sender = await UserModel.findOne({ email: 'manager@gmail.com' }).lean();
+  // const receiver = await UserModel.findOne({ email: 'guest@gmail.com' }).lean();
+  // await UserModel.updateOne(
+  //   { _id: sender._id },
+  //   {
+  //     $set: {
+  //       sendRequests: [...sender.sendRequests, receiver._id]
+  //     }
+  //   }
+  // );
+  // await UserModel.updateOne(
+  //   { _id: receiver._id },
+  //   {
+  //     $addToSet: {
+  //       receiveRequests: sender._id
+  //     }
+  //   }
+  // );
+
+
+
+
+  //  5 Dùng tài khoản manager@gmail.com dislike bài post có id 6531304a8208ea3147485b0d
+  // const user = await UserModel.findOne({ email: 'manager@gmail.com' }).lean();
+  // const data = await PostModel.updateOne(
+  //   {
+  //     _id: '6531304a8208ea3147485b0d', // where
+  //   },
+  //   {
+  //     $pull: {
+  //       likes: user._id // where
+  //     }
+  //   },
+  //   { new: true }
+  // );
+  // console.log(data);
 
 
   //4 Dùng tài khoản manager@gmail.com like bài post có id 6531304a8208ea3147485b0d
@@ -64,22 +122,34 @@ const PostModel = require('./models/Post');
 
 
   // 2
-  // find user manager@gmail.com
-  // const user = await UserModel.findOne({ email: 'user@gmail.com' }).lean();
+  // find user admin@gmail.com
+  // const user = await UserModel.findOne({ email: 'Admin@gmail.com' }).lean();
   // if (!user) {
   //   console.log('Can\'t find user');
   //   return;
   // }
+
   // const data = await PostModel.insertMany([
   //   {
-  //     content: 'bài post số 1 của user@gmail.com',
+  //     content: 'bài post số 1 của admin@gmail.com',
   //     author: user._id
   //   },
   //   {
-  //     content: 'bài post số 2 của user@gmail.com',
+  //     content: 'bài post số 2 của admin@gmail.com',
+  //     author: user._id
+  //   },
+  //   {
+  //     content: 'bài post số 3 của admin@gmail.com',
   //     author: user._id
   //   }
   // ]);
+  // // console.log(data.map(v => v._id));
+  // await UserModel.updateOne(
+  //   { _id: user._id },
+  //   {
+  //     $set: { posts: [...user.posts, ...data.map(v => v._id)] }
+  //   })
+
 
 
   // 1
