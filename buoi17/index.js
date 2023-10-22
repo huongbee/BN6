@@ -9,16 +9,99 @@ const CommentModel = require('./models/Comment');
 const PostModel = require('./models/Post');
 
 (async () => {
-  //9
-  const data = await UserModel.findOne({ email: 'Admin@gmail.com' })
-    .lean()
-    .select('name -_id')
-    .populate({
-      path: 'posts',
-      select: 'content -_id'
-    })
+  // 15 Xoá bài đăng có ít hơn 5 lượt like
+  // find bài đăng có ít hơn 5 lượt like
+  const posts = await PostModel.aggregate([
+    {
+      $project: {
+        count: { $size: '$likes' }
+      }
+    },
+    { $match: { count: { $lte: 5 } } }
+  ]);
+  console.log(posts);
 
-  console.log(data);
+  // delete
+  await PostModel.deleteMany({
+    _id: posts.map(post => post._id)
+  });
+
+  // cho biet date ABC co nhung patients tham gia appointments
+  // Appointments.aggregate([{
+  //         $group: {
+  //             _id: '$date',
+  //             patients: {
+  //                 $push: '$patient'
+  //             }
+  //         }
+  //     },
+  //     {
+  //         $project: {
+  //             date: '$_id',
+  //             patients: 1,
+  //             _id: 0
+  //         }
+  //     },
+  //     {
+  //         $lookup: {
+  //             from: "patients", // collection patients
+  //             localField: "patient", // field name in collection appointments
+  //             foreignField: "_id", // _id in collection patients
+  //             as: "patient_doc"
+  //         }
+  //     }
+  // ])
+
+
+  // 13 Cho biết comment đầu tiên trên bài post có id 65348ea4b35387176bd0171c của user admin@gmail.com có bao nhiêu lượt like
+  // const data = await UserModel.findOne({ email: 'Admin@gmail.com' }).lean()
+  //   .populate({
+  //     path: 'posts',
+  //     match: { _id: '65348ea4b35387176bd0171c' },
+  //     populate: {
+  //       path: 'comments',
+  //       options: {
+  //         limit: 1,
+  //         skip: 0,
+  //       }
+  //     }
+  //   });
+  // console.log(data.posts[0].comments[0].likes.length);
+
+
+
+
+  // 12 Cho biết bài đăng với id 65348ea4b35387176bd0171c có bao nhiêu lượt like, cho biết tên người tạo, liệt kê các comment của bài đăng đó, cho biết tên của user đã comment
+  // const postInfo = await PostModel.findOne({ _id: '65348ea4b35387176bd0171c' })
+  //   .lean()
+  //   .populate({
+  //     path: 'author',
+  //     select: 'name -_id'
+  //   })
+  //   .populate({
+  //     path: 'comments',
+  //     populate: {
+  //       path: 'author',
+  //       select: 'name -_id'
+  //     }
+  //   })
+  // console.log(`So luot like = ${postInfo.likes.length}`);
+  // console.log(`Ten nguoi tao: ${postInfo.author.name}`);
+  // postInfo.comments.forEach(comment => {
+  //   console.log(`${comment.author.name} da viet comment voi noi dung: ${comment.content}`);
+  // })
+
+
+  //9
+  // const data = await UserModel.findOne({ email: 'Admin@gmail.com' })
+  //   .lean()
+  //   .select('name -_id')
+  //   .populate({
+  //     path: 'posts',
+  //     select: 'content -_id'
+  //   })
+
+  // console.log(data);
 
   // 8
   // tu lam
@@ -98,8 +181,8 @@ const PostModel = require('./models/Post');
 
 
   //3
-  // find user manager@gmail.com
-  // const postAuthor = await UserModel.findOne({ email: 'manager@gmail.com' }).lean();
+  // // find user manager@gmail.com
+  // const postAuthor = await UserModel.findOne({ email: 'Admin@gmail.com' }).lean();
   // if (!postAuthor) {
   //   console.log('Can\'t find user');
   //   return;
@@ -108,13 +191,17 @@ const PostModel = require('./models/Post');
   // const post = await PostModel.findOne({ author: postAuthor._id }).lean();
 
   // // find user A insert comment on post
-  // const userA = await UserModel.findOne({ email: 'Admin@gmail.com' }).lean();
+  // const userA = await UserModel.findOne({ email: 'hacker@gmail.com' }).lean();
 
   // // user A insert comment
   // const data = await CommentModel.create({
   //   content: userA.name + ' đã comment trên bài post của ' + postAuthor.name,
   //   author: userA._id,
   //   post: post._id
+  // })
+  // // update comment cho post
+  // await PostModel.updateOne({ _id: post._id }, {
+  //   $addToSet: { comments: data._id }
   // })
 
 
