@@ -15,10 +15,20 @@ const UserSchema = new Schema({
 const UserModel = mongoose.model('User', UserSchema);
 
 class User {
-  create(email, password, fullname, gender, birthday) {
+  create = (email, password, fullname, gender, birthday) => {
     return UserModel.create({ email, password, fullname, gender, birthday })
-      .then(result => result)
-      .catch(err => err.message);
+      .then(result => result);
+  }
+  findUserByEmail = (email) => {
+    return UserModel.findOne({ email }).lean();
+  }
+  updateUserInfo = (id, fullname, birthday) => {
+    return UserModel.updateOne(
+      { _id: id },
+      {
+        $set: { fullname, birthday }
+      })
+      .then(result => result.modifiedCount == 1 ? true : false);
   }
 }
 
