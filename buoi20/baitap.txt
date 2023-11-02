@@ -1,0 +1,24 @@
+1. Update password: logged in: old pass, new pass, confirm new pass
+
+2.1 Forget password bằng email:
+  Nhập email để generete link => Gửi link reset pass về mail
+  User nhấp vào link trong mail -> veriry
+    + if true => đến bước 3 (link encrypt(user, expiredAt, KEY) hết hạn trong 15p và link đã sử dụng thì không được tái sử dụng)
+    + else thông báo lỗi
+
+2.2 Forget password bằng SĐT
+  Nhập SDT -> Gửi OTP về SĐT
+  + OTP valid trong 2 phút
+  + chặn user yêu cầu OTP trong 2 phút
+  + chặn user yc gửi OTP 3 lần liên tiếp trong 1h
+  Xác thực OTP:
+    + nếu user nhập sai OTP 5 lần, khóa user thực hiện chức năng Forget password trong 30p,
+    + nếu xác thực OTP thành công -> đến bước 3
+
+3. Reset password: form: new pass, confirm new pass, button
+
+
+Dùng thư viện crypto-js để tạp link send mail
+Dùng thư viện ioredis để lưu trữ OTP/thời gian hiệu lực....
+Thay thế md5 password bằng sha256(nonce + message) của crypto-js
+Send email
