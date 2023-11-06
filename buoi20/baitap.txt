@@ -10,7 +10,7 @@
   Nhập SDT -> Gửi OTP về SĐT
   + OTP valid trong 2 phút
   + chặn user yêu cầu OTP trong 2 phút
-  + chặn user yc gửi OTP 3 lần liên tiếp trong 1h
+  + chặn user yc gửi OTP 3 lần liên tiếp trong 1h (luu thoi diem (t) cua lan dau gui OTP, khi gui lan 2 => check  thoi diem t, lan 3 thi check thoi diem cua lan 2 va ca lan 1 )
   Xác thực OTP:
     + nếu user nhập sai OTP 5 lần, khóa user thực hiện chức năng Forget password trong 30p,
     + nếu xác thực OTP thành công -> đến bước 3
@@ -18,7 +18,11 @@
 3. Reset password: form: new pass, confirm new pass, button
 
 
-Dùng thư viện crypto-js để tạp link send mail
+Dùng thư viện crypto-js để tạo link send mail
 Dùng thư viện ioredis để lưu trữ OTP/thời gian hiệu lực....
 Thay thế md5 password bằng sha256(nonce + message) của crypto-js
 Send email
+
+
+8h50     9h00    9h10   9h55  ok
+8h50     9h00    9h55         not ok

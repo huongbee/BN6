@@ -22,11 +22,11 @@ class User {
   findUserByEmail = (email) => {
     return UserModel.findOne({ email }).lean();
   }
-  updateUserInfo = (id, fullname, birthday) => {
+  updateUserInfo = (id, fullname, birthday, password) => {
     return UserModel.updateOne(
       { _id: id },
       {
-        $set: { fullname, birthday }
+        $set: { fullname, birthday, password }
       })
       .then(result => result.modifiedCount == 1 ? true : false);
   }
