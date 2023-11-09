@@ -1,12 +1,12 @@
 const nodemailer = require('nodemailer');
 const { OAuth2Client } = require('google-auth-library');
 
-const GOOGLE_CLIENT_ID = '39948033889-40hlia7vr1aoesp6p5f3jvp1jskl0to2.apps.googleusercontent.com';
-const GOOGLE_CLIENT_SECRET = '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';
+const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID';
+const GOOGLE_CLIENT_SECRET = 'GOOGLE_CLIENT_SECRET';
 
-const GOOGLE_REFRESH_TOKEN = '1//04ZPb7ZiUbBVRCgYIARAAGAQSNwF-L9IrCgednPSV56rk07t0zlK8NzWzEG5XSTqK4_CVjd1cB6Ntz4srA-V95VP4B8eido5lNVk';
+const GOOGLE_REFRESH_TOKEN = 'GOOGLE_REFRESH_TOKEN';
 
-const SENDER_MAIL = 'huongnguyenak96@gmail.com'; // Email gửi
+const SENDER_MAIL = 'sendermail@gmail.com'; // Email gửi
 
 const myOAuth2Client = new OAuth2Client(
   GOOGLE_CLIENT_ID,
