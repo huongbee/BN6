@@ -4,25 +4,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <!-- <link rel="stylesheet" href="style.css"> -->
+  <title>Client</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <style>
+    .toast-show {
+      display: block !important;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="container">Hello SocketIO
+  </div>
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">Bootstrap</strong>
+        <small class="text-body-secondary">11 mins ago</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Hello, world! This is a toast message.
+      </div>
+    </div>
 
+  </div>
 
-
-
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
   <script>
-    const socket = io('http://localhost:3000'); // Connect to server socketio
-    // socket.on('connection', (socket) => {
+    // Connect to server socketio
+    const socket = io('http://localhost:3000', {
+      transports: ['websocket'],
+    });
     socket.on('message', (data) => {
       console.log(data);
+      $('.toast-body').text(data);
+      $('#liveToast').addClass('toast-show')
     })
-    // })
+    $('.btn-close').on('click', () => {
+      $('#liveToast').removeClass('toast-show')
+    })
   </script>
-
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

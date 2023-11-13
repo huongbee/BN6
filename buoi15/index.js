@@ -213,3 +213,10 @@ const ProductModel = require('./models/ProductModel');
 
 
 // db.getCollection("products").find({"id" : 3})
+
+
+
+
+// p = 1 => skip=0
+// p = 2 => skip=10  = (p-1)*10
+// .skip(0).limit(10)
